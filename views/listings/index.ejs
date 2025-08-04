@@ -1,0 +1,123 @@
+<% layout("/layouts/boilerplate") %>
+
+<div id="filters" class="">
+    <a href="/listings/filter/trending" class="filter text-decoration-none text-dark" data-type="trending">
+  <div><i class="fa-solid fa-fire"></i></div>
+  <p>Trending</p>
+  </a>
+
+
+    <div class="filter" data-state="Koshi">
+      <div><i class="fa-solid fa-mountain"></i></div>
+      <p>Koshi</p>
+    </div>
+    <div class="filter" data-state="Madhesh">
+      <div><i class="fa-solid fa-wheat-awn"></i></div>
+      <p>Madhesh</p>
+    </div>
+    <div class="filter" data-state="Bagmati">
+      <div><i class="fa-solid fa-landmark-dome"></i></div>
+      <p>Bagmati</p>
+    </div>
+    <div class="filter" data-state="Gandaki">
+      <div><i class="fa-solid fa-person-hiking"></i></div>
+      <p>Gandaki</p>
+    </div>
+    <div class="filter" data-state="Lumbini">
+      <div><i class="fa-solid fa-dove"></i></div>
+      <p>Lumbini</p>
+    </div>
+    <div class="filter" data-state="Karnali">
+      <div><i class="fa-solid fa-water"></i></div>
+      <p>Karnali</p>
+    </div>
+    <div class="filter" data-state="Sudurpashchim">
+      <div><i class="fa-solid fa-tree"></i></div>
+      <p>Sudurpashchim</p>
+    </div>
+
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          role="switch"
+          id="flexSwitchCheckDefault"
+        />
+        <label for="flexSwitchCheckDefault" class="form-check-label"
+          >Show Rent with Utilities</label
+        >
+      </div>
+    </div>
+  </div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+<% if (allListings.length === 0) { %>
+    <div class="col-12">
+      <div class="alert alert-warning text-center w-100">
+        No listings found.
+      </div>
+    </div>
+  <% } %>
+
+  <% for(let listing of allListings) { %>
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+<div class="card col listing-card">
+  <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_images" style="height: 20rem"/>
+
+<div class="card-img-overlay"></div>
+
+  <div class="card-body">
+    <p class="card-text">
+     <b> <%= listing.title %> </b> <br />
+     &#8377 <%= listing.price.toLocaleString("en-IN") %> / month
+     <i class="tax-info">&nbsp;&nbsp;+ Elec + Water + Wi-Fi</i>
+    </p>
+  </div>
+</div>
+</a>
+<% } %>
+</div>
+
+<script>
+  let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+  taxSwitch.addEventListener("click", () => {
+  let taxInfo = document.getElementsByClassName("tax-info");
+  for(info of taxInfo) {
+    if(info.style.display != "inline") {
+      info.style.display = "inline";
+    } else {
+      info.style.display = "none";
+    }
+    
+  }
+});
+
+// Main filter logic
+  const filters = document.querySelectorAll(".filter");
+  const urlParams = new URLSearchParams(window.location.search);
+  const activeState = urlParams.get("state");
+  const currentPath = window.location.pathname;
+
+  filters.forEach(filter => {
+    const state = filter.getAttribute("data-state");
+    const type = filter.getAttribute("data-type");
+
+    // Highlight state filter
+    if (state && state === activeState) {
+      filter.classList.add("active-filter");
+    }
+
+    // Highlight trending filter
+    if (type === "trending" && currentPath === "/listings/filter/trending") {
+      filter.classList.add("active-filter");
+    }
+
+    // Add click event to state filters (not needed for <a> tags like Trending)
+    if (state) {
+      filter.addEventListener("click", () => {
+        window.location.href = `/listings?state=${state}`;
+      });
+    }
+  });
+</script>
