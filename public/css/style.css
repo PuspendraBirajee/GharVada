@@ -14,9 +14,19 @@ body {
   background-color: white;
 }
 
-.navbar-brand {
+/* .navbar-brand {
   color: #fe424d;
   font-size: 2rem;
+} */
+
+.navbar-brand {
+  font-weight: 800;
+  font-size: 2rem !important; /* adjust as needed */
+  background: linear-gradient(90deg, #35a4f9, #5750f5, #a23bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
 }
 
 .nav-link {
