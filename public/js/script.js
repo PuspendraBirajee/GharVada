@@ -21,3 +21,21 @@
     );
   });
 })();
+
+const password = document.getElementById("password");
+const togglePassword = document.getElementById("togglePassword");
+const icon = togglePassword.querySelector("i");
+const text = togglePassword.querySelector("span");
+
+togglePassword.addEventListener("click", function () {
+  const type = password.type === "password" ? "text" : "password";
+  password.type = type;
+
+  if (type === "password") {
+    icon.classList.replace("fa-eye-slash", "fa-eye");
+    text.textContent = "Show";
+  } else {
+    icon.classList.replace("fa-eye", "fa-eye-slash");
+    text.textContent = " Hide";
+  }
+});

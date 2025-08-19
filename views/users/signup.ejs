@@ -34,13 +34,35 @@
 
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input
-          name="password"
-          id="password"
-          type="password"
-          class="form-control"
-          required
-        />
+        <div class="input-group">
+          <input
+            name="password"
+            id="password"
+            type="password"
+            class="form-control"
+            required
+          />
+          <button
+            type="button"
+            class="btn"
+            id="togglePassword"
+            style="
+              display: flex;
+              align-items: center;
+              position: absolute;
+              top: 50%;
+              right: 15px;
+              transform: translateY(-50%);
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              color: #6c757d;
+              font-size: 16px;
+            "
+          >
+            <i class="fa-solid fa-eye"></i> <span>Show</span>
+          </button>
+        </div>
       </div>
       <button class="btn btn-success mb-3">SignUp</button>
     </form>
