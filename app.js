@@ -153,6 +153,9 @@ app.use((err, req, res, next) => {
   // res.status(statusCode).send(message);
 });
 
+//to aceess images and uploads
+app.use(express.static("public"));
+
 app.listen(8080, () => {
   console.log("server is listening to port 8080");
 });

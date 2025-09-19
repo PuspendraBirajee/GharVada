@@ -102,8 +102,18 @@
         ></button>
       </div>
       <div class="modal-body">
+        <img
+          src="<%= currUser.profilePic %>"
+          alt="Profile Picture"
+          class="rounded-circle mb-3"
+          style="width: 120px; height: 120px; object-fit: cover"
+        />
         <p><strong>Username:</strong> <%= currUser.username %></p>
         <p><strong>Email:</strong> <%= currUser.email %></p>
+        <form action="/profile/pic" method="POST" enctype="multipart/form-data">
+          <input type="file" name="profilePic" accept="image/*" required />
+          <button class="btn btn-primary btn-sm mt-2">Update Picture</button>
+        </form>
       </div>
     </div>
   </div>
