@@ -137,7 +137,10 @@
             class="mb-3 mt-2"
             method="POST"
           >
+            <% if (currUser && review.author.username === currUser.username) {
+            %>
             <button class="btn btn-sm btn-dark">Delete</button>
+            <% } %>
           </form>
         </div>
       </div>
